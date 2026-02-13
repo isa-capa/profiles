@@ -190,7 +190,7 @@ const FORMS = {
       {
         id: "expertise",
         title: "Áreas de experiencia",
-        hint: "Selecciona varias",
+        hint: "Selecciona 6 experiencias",
         type: "chips",
         key: "expertise",
         multi: true,
