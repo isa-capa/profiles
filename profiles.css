@@ -1,0 +1,631 @@
+:root{
+  --bg: #f6f1ea;
+  --card: #ffffff;
+  --text: #1f1f1f;
+  --muted: #8a8a8a;
+  --border: #eadfd2;
+  --shadow: 0 18px 40px rgba(40, 25, 10, .12);
+  --accent: #d87400;
+
+  --focus: 0 0 0 3px rgba(216, 116, 0, .18);
+  --radius: 18px;
+
+  --chip-border: #eadfd2;
+  --chip-text: #4d4d4d;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.page{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px;
+}
+
+/* TOPBAR: puedes dejarla, pero que no robe atención */
+.topbar{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  opacity: .95;
+}
+
+.brand{
+  display:flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand .dot{
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 999px;
+  box-shadow: 0 0 0 6px rgba(216,116,0,.14);
+}
+.brand h1{ font-size: 16px; margin: 0; line-height: 1.1; }
+.brand p{ margin: 3px 0 0; color: var(--muted); font-size: 12px; }
+
+.role-tabs{
+  background: rgba(255,255,255,.70);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px;
+  display:flex;
+  gap: 6px;
+}
+.tab{
+  border: none;
+  background: transparent;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--muted);
+  font-weight: 800;
+}
+.tab.active{
+  background: var(--card);
+  color: var(--text);
+  box-shadow: 0 10px 18px rgba(0,0,0,.08);
+}
+
+/* MODAL CENTER */
+.overlay{
+  width: 100%;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding: 6px 0 0;
+}
+
+.card{
+  width: min(780px, 92vw);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow:  visible;;
+}
+
+/* Barra naranja superior */
+.card-accent{
+  height: 6px;
+  background: var(--accent);
+}
+
+/* close */
+.close-btn{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.06);
+  background: #fff;
+  font-size: 18px;
+  cursor:pointer;
+  color: #777;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.close-btn:hover{
+  background: rgba(0,0,0,.03);
+}
+
+/* Stepper como barras */
+.stepper{
+  display:flex;
+  justify-content:center;
+  gap: 10px;
+  padding: 18px 16px 6px;
+}
+.step-dot{
+  width: 52px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(216,116,0,.22);
+}
+.step-dot.active{ background: var(--accent); }
+.step-dot.done{ background: rgba(216,116,0,.45); }
+
+/* Head centrado */
+.card-head{
+  text-align:center;
+  padding: 8px 24px 10px;
+}
+.card-head h2{
+  margin: 4px 0 6px;
+  font-size: 30px;
+  letter-spacing: -.2px;
+}
+.card-head p{
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+form{ padding: 8px 24px 18px; }
+
+.step{ display:none; animation: fade .18s ease-out; }
+.step.active{ display:block; }
+@keyframes fade{
+  from{ opacity: 0; transform: translateY(6px); }
+  to{ opacity: 1; transform: translateY(0); }
+}
+
+.field{ margin: 18px 0; }
+
+/* etiqueta + "(Selecciona varias)" como en screenshot */
+.label-row{
+  display:flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+label{
+  font-weight: 900;
+  font-size: 14px;
+}
+.hint{
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Chips estilo “píldora” */
+.chips{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip{
+  border: 1px solid var(--chip-border);
+  background: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor:pointer;
+  font-weight: 700;
+  color: var(--chip-text);
+  user-select: none;
+  transition: background .15s ease, border-color .15s ease, transform .08s ease;
+}
+.chip:hover{
+  background: rgba(0,0,0,.02);
+}
+.chip:active{ transform: scale(.98); }
+
+.chip.selected{
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Inputs y select más “clean” */
+.input, select, textarea{
+  width: 100%;
+  padding: 14px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 15px;
+  outline: none;
+  background: #fff;
+}
+.input:focus, select:focus, textarea:focus{
+  box-shadow: var(--focus);
+  border-color: rgba(216,116,0,.55);
+}
+
+.select-wrap{ position: relative; }
+.select-wrap:after{
+  content:"▾";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  pointer-events: none;
+  font-size: 14px;
+}
+select{ appearance: none; }
+
+/* Tags */
+.tags{
+  margin-top: 10px;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tag{
+  display:inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  background: rgba(216,116,0,.08);
+  border: 1px solid rgba(216,116,0,.20);
+  border-radius: 999px;
+  font-weight: 800;
+  color: #7a3f00;
+}
+.tag button{
+  border:none;
+  background: transparent;
+  cursor:pointer;
+  font-weight: 900;
+  color: #7a3f00;
+}
+
+/* Likert */
+.likert{
+  display:flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.likert button{
+  flex: 1;
+  min-width: 120px;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 12px;
+  cursor:pointer;
+  font-weight: 800;
+  color: #555;
+}
+.likert button.selected{
+  background: rgba(216,116,0,.10);
+  border-color: rgba(216,116,0,.40);
+  box-shadow: var(--focus);
+}
+
+/* Footer botones como screenshot */
+.footer{
+  margin-top: 18px;
+  display:flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0,0,0,.06);
+}
+
+.footer-right{ display:flex; gap: 10px; }
+
+.btn{
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-weight: 900;
+  cursor:pointer;
+  min-width: 150px;
+}
+
+.btn.primary{
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  min-width: 210px;
+}
+
+.btn.ghost{
+  background: #fff;
+  color: #555;
+}
+.btn:focus{ outline:none; box-shadow: var(--focus); }
+.btn:disabled{
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+/* responsive */
+@media (max-width: 720px){
+  .card-head h2{ font-size: 24px; }
+  form{ padding: 8px 16px 16px; }
+  .btn{ min-width: 120px; padding: 12px 14px; }
+  .btn.primary{ min-width: 160px; }
+}
+
+/* panel result (igual, pero más limpio) */
+.result{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding: 20px;
+}
+.result.show{ display:flex; }
+
+.result-card{
+  width: min(760px, 94vw);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+  position: relative;
+}
+
+.result-head{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-card pre{
+  max-height: 42vh;
+  overflow:auto;
+  background: rgba(216,116,0,.06);
+  border: 1px solid rgba(216,116,0,.18);
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+.result-actions{
+  display:flex;
+  gap: 10px;
+  justify-content:flex-end;
+}
+.muted{ color: var(--muted); }
+
+.mini{
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content:center;
+  padding-bottom: 8px;
+}
+.pill{
+  font-size: 12px;
+  color: #6b6b6b;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.70);
+  padding: 8px 10px;
+  border-radius: 999px;
+}
+
+/* Aparatado lenguajes */
+.ms{
+  position: relative;
+}
+
+.ms-header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  justify-content: space-between;
+}
+
+.ms-header span:first-child{
+  flex: 1;
+  text-align: left;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ms-count{
+  color: var(--muted);
+  font-weight: 800;
+  margin-left: 6px;
+}
+
+.ms-caret{
+  color: #777;
+}
+
+.ms-panel{
+  position: absolute;
+  z-index: 200;
+  left: 0;
+  right: 0;
+  top: calc(100% + 8px);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.18);
+  padding: 14px;
+  display: none;
+
+  max-height: 420px;
+}
+
+
+.ms.open .ms-panel{ display: block; }
+
+.ms-search{
+  width: 100%;
+  padding: 12px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+}
+
+.ms-search:focus{
+  box-shadow: var(--focus);
+  border-color: rgba(216,116,0,.55);
+}
+
+.ms-list{
+  margin-top: 10px;
+  max-height: 220px;
+  overflow: auto;
+  padding: 4px;
+}
+
+.ms-item{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ms-item:hover{
+  background: rgba(0,0,0,.03);
+}
+
+.ms-item input{
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+/* ===== Range / Slider ===== */
+
+.range-wrap{
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.range-meta{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.range-meta span{
+  display:inline-block;
+  min-width: 80px;
+}
+.range-meta span:last-child{
+  text-align:right;
+}
+
+/* el input range en sí */
+.range-wrap input[type="range"]{
+  width: 100%;
+  height: 28px;                 /* hace que no se vea mini */
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* TRACK (barra) */
+.range-wrap input[type="range"]::-webkit-slider-runnable-track{
+  height: 8px;
+  border-radius: 999px;
+  background: #e6e6e6;          /* gris base */
+}
+
+.range-wrap input[type="range"]::-moz-range-track{
+  height: 8px;
+  border-radius: 999px;
+  background: #e6e6e6;
+}
+
+/* THUMB (bolita) */
+.range-wrap input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #166534;          /* 👈 verde */
+  border: 2px solid #ffffff;
+  box-shadow: 0 8px 18px rgba(0,0,0,.18);
+  margin-top: -6px;             /* centra la bolita en el track */
+}
+
+.range-wrap input[type="range"]::-moz-range-thumb{
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #166534;          /* 👈 verde */
+  border: 2px solid #ffffff;
+  box-shadow: 0 8px 18px rgba(0,0,0,.18);
+}
+
+/* ===== Track "relleno" verde (sin JS extra) =====
+   Usamos background con gradient y la variable --fill que pondremos desde JS (abajo te dejo opción)
+*/
+.range-wrap input[type="range"]{
+  --fill: 50%;
+}
+
+.range-wrap input[type="range"]::-webkit-slider-runnable-track{
+  background: linear-gradient(to right, #166534 0 var(--fill), #e6e6e6 var(--fill) 100%);
+}
+
+.range-wrap input[type="range"]::-moz-range-track{
+  background: linear-gradient(to right, #166534 0 var(--fill), #e6e6e6 var(--fill) 100%);
+}
+
+/* ==========================
+   Quitar exceso de bold
+   ========================== */
+
+/* Labels principales más suaves */
+label{
+  font-weight: 700;   /* antes 800/900 */
+}
+
+/* Chips */
+.chip{
+  font-weight: 500;   /* antes 700 */
+}
+
+/* Chips seleccionados */
+.chip.selected{
+  font-weight: 600;
+}
+
+/* Likert buttons */
+.likert button{
+  font-weight: 500;
+}
+
+/* Tags */
+.tag{
+  font-weight: 500;
+}
+
+/* Tabs */
+.tab{
+  font-weight: 600;
+}
+
+/* Botones generales */
+.btn{
+  font-weight: 600;
+}
+
+/* Headers secundarios */
+.hint{
+  font-weight: 400;
+}
