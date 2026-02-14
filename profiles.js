@@ -221,10 +221,13 @@ const FORMS = {
             options: ["Nuevo (0-6 meses)", "Intermedio (6-24 meses)", "Avanzado (2+ años)", "Experto (5+ años)"]
           },
           {
-            type: "tags",
+            type: "multiselect",
             key: "languages",
             label: "Idiomas que hablas",
-            placeholder: "Ej. Español, Inglés, Francés"
+            hint: "Selecciona uno o varios",
+            placeholder: "Buscar idioma…",
+            options: LANGUAGES_WORLD,
+            max: 8
           }
         ]
       },
