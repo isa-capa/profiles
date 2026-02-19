@@ -756,3 +756,58 @@ label{
 @media (max-width: 720px){
   .create-grid{ grid-template-columns: 1fr; }
 }
+
+/* ===== Password UI ===== */
+.pw-wrap{
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pw-wrap .input{
+  padding-right: 46px; /* espacio para el ojito */
+}
+
+.pw-toggle{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color: #555;
+}
+
+.pw-toggle:hover{
+  background: rgba(0,0,0,.03);
+}
+
+.pw-meter{
+  margin-top: 8px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.08);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+.pw-bar{
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  transition: width .18s ease;
+}
+
+.pw-strength{
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
