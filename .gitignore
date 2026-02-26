@@ -1,1 +1,25 @@
+# core table
 /SQL/coreTable.sql
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Private matching assets (stage 2 ML)
+ml/private/
+ml/models/
+ml/datasets/
+ml/*.joblib
+ml/*.pkl
+ml/*.csv
+
+# Local secrets
+.env
+.env.*
