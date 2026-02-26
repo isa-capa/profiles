@@ -122,6 +122,22 @@ El algoritmo de matching estará basado en un **estudio propio** que realizamos 
 📄 Puedes consultar el estudio completo aquí:
 👉 **[https://drive.google.com/file/d/1HRoivtYmzMpvEKDGXajMlrmqS3sV8rck/view?usp=sharing]**
 
+
+## 🤖 Algoritmo de Match (Python)
+
+Se agregó una primera versión en `ml/guide_tourist_match.py` con:
+
+- Scoring ponderado por parámetros (intereses, idiomas, ubicación, estilo, logística, etc.).
+- Umbral configurable de match (por defecto 90%).
+- Ranking tipo swipe/descubrimiento para listar guías por compatibilidad.
+- Base preparada para etapa 2 con machine learning (`MLMatcherAdapter`).
+
+Ejecuta un ejemplo rápido:
+
+```bash
+python ml/guide_tourist_match.py
+```
+
 ## 🤝 Todas las contribución son bienvenidas
 
 ---
