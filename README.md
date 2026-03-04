@@ -154,3 +154,29 @@ python ml/guide_tourist_match.py
   "createdAt": "2026-02-16T02:18:38.614Z"
 }
 
+
+```
+
+## Future Learning Layer
+
+This section describes a possible evolution path for the matching engine without implementing it yet:
+
+- Capture explicit feedback events per Traveler-Guide pair:
+  - `like` / `dislike`
+  - booking started
+  - booking completed
+- Store feedback with context features used at match time:
+  - profile snapshot hash
+  - dimension breakdown scores
+  - final selected guide
+- Use feedback to adjust weights dynamically:
+  - increase weights for dimensions correlated with successful bookings
+  - reduce weights for dimensions correlated with rejections
+  - keep hard constraints for safety and business rules
+- Introduce a supervised learning stage once enough labeled data exists:
+  - features: current rule-based breakdown + profile-derived metadata
+  - label: successful booking or positive post-experience rating
+  - train/validate offline, then deploy as a re-ranker over the rule-based score
+- Keep explainability:
+  - preserve per-dimension breakdown in production responses
+  - expose top reasons for recommendation to product surfaces
